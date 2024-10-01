@@ -17,6 +17,7 @@ def home(request):
 
 def about(request):
     return render(request, 'about.html')
+
 def index(request):
     def fetch_random_pokemon():
         random_index = random.randint(1, 150)
