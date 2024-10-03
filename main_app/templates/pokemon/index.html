@@ -1,6 +1,9 @@
-{% extends 'base.html' %} {% load static %} {% block head %}
-<link rel="stylesheet" href="{% static 'css/pokemon/poke-index.css' %}" />
-{% endblock %} {% block content %}
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/pokemon/poke-index.css' %}"/>
+{% endblock %} 
+{% block content %}
 
 <section class="page-header">
   <h1>Random Pokemon Generator</h1>
@@ -11,19 +14,26 @@
 </section>
 
 <section class="card-container">
-  <div class="card">
-    <a href="{% url 'poke-detail' pokemon.poke_id %}">
-      <div class="card-content">
-        <div class="card-img-container">
-          <img src="{{ pokemon.image_url }}" alt="{{ pokemon.name }}" />
+    <div class="card">
+      <a href="{% url 'poke-detail' pokemon.poke_id %}">
+        <div class="card-content">
+          <div class="card-img-container">
+            <img
+              src="{{ pokemon.image_url }}"
+              alt="{{ pokemon.name }}"
+            />
+          </div>
+          <h2 class="card-title">{{ pokemon.name }}</h2>
+          <p><strong>Experience:</strong> {{ pokemon.xp }}</p>
+          <p><strong>Type:</strong> {{ pokemon.type }}</p>
+          <p><strong>Abilities:</strong> {{ pokemon.abilities }}</p>
         </div>
-        <h2 class="card-title">{{ pokemon.name }}</h2>
-        <p><strong>Experience:</strong> {{ pokemon.xp }}</p>
-        <p><strong>Type:</strong> {{ pokemon.type }}</p>
-        <p><strong>Abilities:</strong> {{ pokemon.abilities }}</p>
-      </div>
-    </a>
-  </div>
+      </a>
+      <a href="{% url 'catch-pokemon' pokemon.poke_id %}" class="btn btn-primary" id="catch-button">
+        <img class='pokeball-icon' src="/static/images/pokemon/1.png" alt="Red Pokeball"> 
+        Catch Pokémon
+      </a>
+    </div>
 </section>
 
 {% endblock %}

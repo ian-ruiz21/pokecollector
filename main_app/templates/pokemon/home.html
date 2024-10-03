@@ -1,17 +1,34 @@
 {% extends 'base.html' %} {% load static %} {% block head %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+<link rel="stylesheet" href="{% static 'css/homepage.css' %}" />
 {% endblock %} {% block content %}
-
-<section class="logo-container">
-  <div class="cat-container">
-    {% comment %} TODO: Add Pokemon Collector Logo {% endcomment %}
-    <img src="" alt="TODO: The Pokemon Collector" />
+<section class="hero">
+  <div class="hero-content">
+    <h1>Welcome to Pokémon Collector</h1>
+    <p>Catch 'em all and build your ultimate Pokémon collection!</p>
+    <a href="/pokemon/generate" class="btn-primary">Generate Random Pokémon</a>
   </div>
-  {% comment %} TODO: Add Pokemon Images {% endcomment %}
-  <img
-    src=""
-    alt="TODO: Add Pokemon Collector Logo"
-  />
+  <div class="hero-img">
+    <img src="{% static 'images/pokemon/hero.png' %}" alt="Pokémon heroes" />
+  </div>
 </section>
 
+<section class="features">
+  <div class="feature">
+    <h2>Explore Your Collection</h2>
+    <p>View all your collected Pokémon and manage your favorite ones.</p>
+    <a href="/pokemon" class="btn-secondary">View Collection</a>
+  </div>
+  <div class="feature">
+    <h2>About Pokémon Collector</h2>
+    <p>
+      Learn more about the app and how it helps you collect and discover
+      Pokémon.
+    </p>
+    <a href="/about" class="btn-secondary">Learn More</a>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2024 Pokémon Collector | Made with ❤️ by The Cave😎</p>
+</footer>
 {% endblock %}

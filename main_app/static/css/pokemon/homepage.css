@@ -1,0 +1,161 @@
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px;
+  background-color: #ffcb05; /* Pokémon yellow */
+  color: #3b4cca; /* Pokémon blue */
+}
+
+.hero-content {
+  max-width: 500px;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.hero-content .btn-primary {
+  background-color: #3b4cca;
+  color: #fff;
+  padding: 15px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
+}
+
+.hero-content .btn-primary:hover {
+  background-color: #ffcb05;
+  color: #3b4cca;
+}
+
+.hero-img img {
+  width: 400px;
+}
+
+/* Features Section */
+.features {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 60px 0;
+  background-color: #f9f9f9;
+}
+
+.feature {
+  text-align: center;
+  max-width: 300px;
+}
+
+.feature h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.feature p {
+  margin-bottom: 20px;
+}
+
+.feature .btn-secondary {
+  background-color: #ffcb05;
+  color: #3b4cca;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.feature .btn-secondary:hover {
+  background-color: #3b4cca;
+  color: #ffcb05;
+}
+
+/* Footer Section */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #3b4cca;
+  color: white;
+}
+
+footer p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* General styles */
+body {
+  font-family: "Be Vietnam Pro", sans-serif; /* Use a font of your choice */
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .hero-img img {
+    width: 300px;
+  }
+
+  .features {
+    flex-direction: column;
+  }
+
+  .feature {
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .hero-content .btn-primary {
+    font-size: 1rem;
+  }
+
+  .feature h2 {
+    font-size: 1.5rem;
+  }
+
+  .feature p {
+    font-size: 0.9rem;
+  }
+
+  .feature .btn-secondary {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
+}

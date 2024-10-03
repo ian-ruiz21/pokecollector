@@ -17,16 +17,17 @@
   <body>
     <header>
       <div class="header-logo-container">
-        {% comment %} <a href="/">
-          <img src="" alt="The Poke Collector Logo" /> 
-        </a> {% endcomment %}
-        <h1>The Poke Collector</h1>
+        <a href="/">
+          <img src="{% static 'images/pokemon/Poke-Collector-Top-Banner.png' %}" alt="The Poke Collector Logo" /> 
+        </a>
       </div>
       <nav>
         <ul>
             <li><a href="/pokemon">Generate Random Pokemon</a></li>
             <li>|<li/>
             <li><a href="/about">About</a></li>
+            <li>|<li/>
+            <li><a href="/pokemon/show">Your Pokémon</a></li>
         </ul>
       </nav>
     </header>
@@ -36,4 +37,3 @@
      </main>
   </body>
 </html>
-

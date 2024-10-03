@@ -1,7 +1,5 @@
 from django.db import models
-
-# Create your models here.
-
+from django.urls import reverse
 
 class Pokemon(models.Model):
     name = models.CharField(max_length=100)
@@ -9,8 +7,11 @@ class Pokemon(models.Model):
     xp = models.IntegerField()
     type = models.CharField(max_length=100)
     abilities = models.TextField()
-    moves = models.TextField()
     image_url = models.URLField()
+    nickname = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
-        return self.name
+       return f'{self.name} (ID: {self.poke_id})'
+
+    def get_absolute_url(self):
+        return reverse('poke-detail', kwargs={'poke_id': self.poke_id})
