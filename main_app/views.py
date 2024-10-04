@@ -1,10 +1,11 @@
 import random
 import requests
 from django.urls import reverse_lazy
-from django.views.generic.edit import DeleteView
+from django.views.generic.edit import DeleteView, UpdateView
+from django.views.generic import CreateView, ListView, DetailView
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound
-from .models import Pokemon
+from .models import Pokemon, Item
 from .forms import PokemonNicknameForm, FeedingForm
 
 
@@ -123,10 +124,38 @@ def update_nickname(request, poke_id):
 
 
 def add_feeding(request, poke_id):
+    try:
+        pokemon = Pokemon.objects.get(poke_id=poke_id)
+    except Pokemon.DoesNotExist:
+        return HttpResponseNotFound("Pokemon not found")
+
     form = FeedingForm(request.POST)
 
     if form.is_valid():
         new_feeding = form.save(commit=False)
-        new_feeding.pokemon_id = poke_id
+        new_feeding.pokemon = pokemon
         new_feeding.save()
-    return redirect("poke-detail", poke_id=poke_id)
+        return redirect("poke-detail", poke_id=poke_id)
+
+    return render(
+        request, "pokemon/add_feeding.html", {"form": form, "pokemon": pokemon}
+    )
+
+class ItemCreate(CreateView):
+    model = Item
+    fields = "__all__"
+
+class ItemList(ListView):
+    model = Item
+
+
+class ItemDetail(DetailView):
+    model = Item
+
+class ItemUpdate(UpdateView):
+    model = Item
+    fields = ['name', 'effect']
+
+class ItemDelete(DeleteView):
+    model = Item
+    success_url = '/items/'

@@ -11,6 +11,17 @@ MEALS = (
     ("T", "Tonkatsu"),
 )
 
+class Item(models.Model):
+    name = models.CharField(max_length=100)
+    effect = models.TextField(max_length=500)
+
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse("item-detail", kwargs={"pk": self.pk})
+    
+
 
 class Pokemon(models.Model):
     name = models.CharField(max_length=100)
@@ -40,3 +51,4 @@ class Feeding(models.Model):
 
     class Meta:
         ordering = ["-date"]
+

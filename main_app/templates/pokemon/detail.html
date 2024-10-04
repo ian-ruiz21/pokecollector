@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% load static %} {% block head %}
-<link rel="stylesheet" href="{% static 'css/pokemon/poke-index.css' %}" />
+<link rel="stylesheet" href="{% static 'css/pokemon/poke-detail.css' %}" />
 {% endblock %} {% block content %}
 
 <section class="card-container">
@@ -19,13 +19,20 @@
   <section class="feedings">
     <div class="subsection-title">
       <h2>Feedings</h2>
-      <img src="{% static 'images/cat-cone.svg' %}" alt="TODO: Add Onigiri" />
-      <img src="{% static 'images/cat-onigiri.svg' %}" alt="TODO: Add Sushi" />
-      <img
-        src="{% static 'images/kitty-kabob.svg' %}"
-        alt="TODO: Add Pokemon Foods Icon"
-      />
+      {% comment %} <img src="{% static 'images/cat-cone.svg' %}" alt="" />
+      <img src="' %}" alt="" />
+      <img src="" alt="" /> {% endcomment %}
     </div>
+    <h3>Add a Feeding</h3>
+    <form
+      action="{% url 'add-feeding' pokemon.poke_id %}"
+      method="post"
+      class="subsection-content"
+      autocomplete="off"
+    >
+      {% csrf_token %} {{ feeding_form.as_p }}
+      <button type="submit" class="btn submit">Add Feeding</button>
+    </form>
     <table>
       <thead>
         <tr>
@@ -34,27 +41,24 @@
         </tr>
       </thead>
       <tbody>
-        {% if feedings %}
-        <p>{{ pokemon.nickname }} has been fed.</p>
-        {% else %}
-        <p>{{ pokemon.nickname }} hasn't been fed yet.</p>
-        {% endif %}
-        <h3>Add a Feeding</h3>
-        <form
-          action="{% url 'add-feeding' pokemon.poke_id %}"
-          method="post"
-          class="subsection-content"
-          autocomplete="off"
-        >
-          {% csrf_token %} {{ feeding_form.as_p }}
-          <button type="submit" class="btn submit">Add Feeding</button>
-        </form>
-        {% for feeding in feedings %}
+        {% if pokemon %}
         <tr>
-          <td>{{feeding.date}}</td>
-          <td>{{feeding.get_meal_display}}</td>
+          <td colspan="2">Pokemon: {{ pokemon.name }}</td>
         </tr>
-        {% endfor %}
+        {% for feeding in pokemon.feeding_set.all %}
+        <tr>
+          <td>{{ feeding.date }}</td>
+          <td>{{ feeding.get_meal_display }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="2">No feedings available.</td>
+        </tr>
+        {% endfor %} {% else %}
+        <tr>
+          <td colspan="2">No pokemon available.</td>
+        </tr>
+        {% endif %}
       </tbody>
     </table>
   </section>

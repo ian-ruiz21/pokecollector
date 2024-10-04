@@ -17,4 +17,10 @@ urlpatterns = [
         name="update-nickname",
     ),
     path("pokemon/<int:poke_id>/add-feeding/", views.add_feeding, name="add-feeding"),
+    path("items/", views.ItemList.as_view(), name="items-index"),
+    path("items/<int:pk>/", views.ItemDetail.as_view(), name="item-detail"),
+    path("items/create/", views.ItemCreate.as_view(), name="item-create"),
+    path('items/<int:pk>/update/', views.ItemUpdate.as_view(), name='item-update'),
+    path('items/<int:pk>/delete/', views.ItemDelete.as_view(), name='item-delete'),
+
 ]

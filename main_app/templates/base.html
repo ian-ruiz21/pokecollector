@@ -24,10 +24,14 @@
       <nav>
         <ul>
           <li><a href="/pokemon">Generate Random Pokemon</a></li>
-          <li>|</li>
+          &nbsp;|&nbsp;
           <li><a href="/about">About</a></li>
-          <li>|</li>
+          &nbsp;|&nbsp;
           <li><a href="/pokemon/show">Your Pokémon</a></li>
+          &nbsp;|&nbsp;
+          <li><a href="{% url 'item-create' %}">Add Item</a></li>
+          &nbsp;|&nbsp;
+          <li><a href="{% url 'items-index' %}">All Items</a></li>
         </ul>
       </nav>
     </header>
