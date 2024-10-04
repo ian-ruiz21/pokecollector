@@ -50,6 +50,8 @@ def poke_detail(request, poke_id):
     try:
         pokemon = Pokemon.objects.get(poke_id=poke_id)
         feeding_form = FeedingForm()
+        items_pokemon_doesnt_have = Item.objects.exclude(id__in = pokemon.items.all().values_list('id'))
+
     except Pokemon.DoesNotExist:
         return HttpResponseNotFound("Pokemon not found")
 
@@ -60,6 +62,7 @@ def poke_detail(request, poke_id):
             "pokemon": pokemon,
             "feedings": pokemon.feedings.all(),
             "feeding_form": feeding_form,
+            "items": items_pokemon_doesnt_have,
         },
     )
 
@@ -159,3 +162,11 @@ class ItemUpdate(UpdateView):
 class ItemDelete(DeleteView):
     model = Item
     success_url = '/items/'
+
+def associate_item(request, poke_id, item_id):
+    Pokemon.objects.get(poke_id=poke_id).items.add(item_id)
+    return redirect('poke-detail', poke_id=poke_id)
+
+def remove_item(request, poke_id, item_id):
+    Pokemon.objects.get(poke_id=poke_id).items.remove(item_id)
+    return redirect('poke-detail', poke_id=poke_id)

@@ -20,7 +20,13 @@ urlpatterns = [
     path("items/", views.ItemList.as_view(), name="items-index"),
     path("items/<int:pk>/", views.ItemDetail.as_view(), name="item-detail"),
     path("items/create/", views.ItemCreate.as_view(), name="item-create"),
-    path('items/<int:pk>/update/', views.ItemUpdate.as_view(), name='item-update'),
-    path('items/<int:pk>/delete/', views.ItemDelete.as_view(), name='item-delete'),
+    path("items/<int:pk>/update/", views.ItemUpdate.as_view(), name="item-update"),
+    path("items/<int:pk>/delete/", views.ItemDelete.as_view(), name="item-delete"),
+    path(
+        "pokemon/<int:poke_id>/associate-item/<int:item_id>/",
+        views.associate_item,
+        name="associate-item",
+    ),
+    path('pokemon/<int:poke_id>/remove-item/<int:item_id>/', views.remove_item, name='remove-item'),
 
 ]
