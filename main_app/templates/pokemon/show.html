@@ -1,9 +1,6 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block head %}
-<link rel="stylesheet" href="{% static 'css/pokemon/poke-index.css' %}"/>
-{% endblock %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/pokemon/poke-index.css' %}" />
+{% endblock %} {% block content %}
 
 <section class="page-header">
   <h1>Your Pokémon Roster</h1>
@@ -11,28 +8,29 @@
 
 <section class="card-container">
   {% for poke in pokemon %}
-    <div class="card">
-      <a href="{% url 'poke-detail' poke.poke_id %}">
-        <div class="card-content">
-          <div class="card-img-container">
-            <img
-              src="{{ poke.image_url }}"
-              alt="{{ poke.name }}"
-            />
-          </div>
-          <h2 class="card-title">{{ poke.name }}</h2>
-          <p><strong>Nickname:</strong> {{ poke.nickname }}</p>
-          <p><strong>Experience:</strong> {{ poke.xp }}</p>
-          <p><strong>Type:</strong> {{ poke.type }}</p>
-          <p><strong>Abilities:</strong> {{ poke.abilities }}</p>
+  <div class="card">
+    <a href="{% url 'poke-detail' poke.poke_id %}">
+      <div class="card-content">
+        <div class="card-img-container">
+          <img src="{{ poke.image_url }}" alt="{{ poke.name }}" />
         </div>
-      </a>
-      <form action="{% url 'pokemon-delete' poke.pk %}" method="post" style="display:inline;">
-        {% csrf_token %}
-        <button type="submit" class="delete-button">Delete</button>
-      </form>
-      <a href="{% url 'update-nickname' poke.poke_id %}">Update Nickname</a>
-    </div>
+        <h2 class="card-title">{{ poke.name }}</h2>
+        <p><strong>Nickname:</strong> {{ poke.nickname }}</p>
+        <p><strong>Experience:</strong> {{ poke.xp }}</p>
+        <p><strong>Type:</strong> {{ poke.type }}</p>
+        <p><strong>Abilities:</strong> {{ poke.abilities }}</p>
+      </div>
+    </a>
+    <form
+      action="{% url 'pokemon-delete' poke.pk %}"
+      method="post"
+      style="display: inline"
+    >
+      {% csrf_token %}
+      <button type="submit" class="delete-button">Delete</button>
+    </form>
+    <a href="{% url 'update-nickname' poke.poke_id %}">Update Nickname</a>
+  </div>
   {% endfor %}
 </section>
 
